@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import ProductList from "./component/ProductList";
 
 const PRODUCTS = [
@@ -7,13 +8,20 @@ const PRODUCTS = [
 ];
 
 function App() {
-  if (!PRODUCTS.length) {
-    return <div>No Product Data Found....</div>;
-  }
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  // Simulate loading (SPA behavior)
+  useEffect(() => {
+    setTimeout(() => {
+      setProducts(PRODUCTS);
+      setLoading(false);
+    }, 1000);
+  }, []);
 
   return (
     <>
-      <ProductList items={PRODUCTS} />
+      <ProductList items={products} loading={loading} />
     </>
   );
 }
