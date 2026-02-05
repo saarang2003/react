@@ -1,10 +1,13 @@
 import Header from "./component/Header";
 
+const CONTENT = "React Fundamentals Training";
+const HEADING_TEXT = "Welcome To React";
+
 function App() {
   return (
     <div>
-      <h1>Welcome To React</h1>
-      <Header msg={"React Fundamentals Training"} />
+      <h1>{HEADING_TEXT}</h1>
+      <Header msg={CONTENT} />
     </div>
   );
 }
