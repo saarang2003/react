@@ -1,35 +1,37 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from "react";
+import UserCard from "./component/UserCard";
+
+const users = [
+  { id: 1, name: "Alice", role: "Admin", isOnline: true },
+  { id: 2, name: "Bob", role: "User", isOnline: false },
+  { id: 3, name: "Charlie", role: "Moderator", isOnline: true },
+  { id: 4, name: "David", role: "User", isOnline: false },
+  { id: 5, name: "Eva", role: "Admin", isOnline: true },
+  { id: 6, name: "Frank", role: "User", isOnline: false },
+  { id: 7, name: "Grace", role: "Moderator", isOnline: true },
+  { id: 8, name: "Hannah", role: "User", isOnline: false },
+  { id: 9, name: "Ian", role: "User", isOnline: true },
+  { id: 10, name: "Julia", role: "Admin", isOnline: false },
+];
 
 function App() {
-  const [count, setCount] = useState(0)
+  if (users.length < 0) {
+    return <div>Users Not found...</div>;
+  }
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      {users.length > 0 &&
+        users.map((user) => (
+          <UserCard
+            name={user.name}
+            key={user.id}
+            role={user.role}
+            isOnline={user.isOnline}
+          />
+        ))}
     </>
-  )
+  );
 }
 
-export default App
+export default App;
