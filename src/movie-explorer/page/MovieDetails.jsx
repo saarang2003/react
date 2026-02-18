@@ -10,38 +10,18 @@ import {
 import { useFavorites } from "../context/FavoritesContext";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import useFetch from "../hooks/useFetch";
+import { fetchMovieById } from "../api/movieService";
 
 export default function MovieDetails() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [movie, setMovie] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
 
-  useEffect(() => {
-    const fetchMovie = async () => {
-      setLoading(true);
-      try {
-        const url = `https://api.themoviedb.org/3/movie/${id}?api_key=7e98c37a068365fec85ba67df4900c0b`;
-        console.log("Calling URL:", url);
-
-        const res = await axios.get(url, {
-          headers: { Accept: "application/json" },
-        });
-
-        console.log("Movie data:", res.data);
-        setLoading(false);
-        setMovie(res.data);
-      } catch (err) {
-        console.error("Fetch error:", err);
-        setError(err.message);
-      } finally {
-        setError("");
-      }
-    };
-
-    fetchMovie();
-  }, [id]);
+  const {
+    data: movie,
+    loading,
+    error,
+  } = useFetch(() => fetchMovieById(id), [id]);
 
   console.log("Movie ID from params:", id);
 
