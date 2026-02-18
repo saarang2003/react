@@ -12,10 +12,8 @@ export const fetchTrendingMovies = async () => {
 };
 
 export const fetchMovieById = async (id) => {
-  const res = await axios.get(
-    `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}`,
-  );
-  console.log("movie detaile output ", res?.data); // 👈 check this
+  const res = await axios.get(`${BASE_URL}/movie/${id}?api_key=${API_KEY}`);
+  console.log("movie detaile output ", res?.data);
   return res?.data;
 };
 

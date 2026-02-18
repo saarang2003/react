@@ -47,6 +47,7 @@ function MovieCard({ movie }) {
           onClick={() =>
             isFav ? removeFavorite(movie.id) : addFavorite(movie)
           }
+          color={isFav ? "error" : "primary"}
         >
           {isFav ? "Remove Fav" : "Add Fav"}
         </Button>
