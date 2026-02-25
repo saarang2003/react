@@ -1,19 +1,16 @@
 import axios from "axios";
-
-const BASE_URL = "your base url here";
-const API_KEY = "your api key here";
+const API_KEY = import.meta.env.VITE_API_KEY;
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 export const fetchTrendingMovies = async () => {
   const res = await axios.get(
     `${BASE_URL}/trending/movie/week?api_key=${API_KEY}`,
   );
-  console.log(res);
   return res.data.results;
 };
 
 export const fetchMovieById = async (id) => {
   const res = await axios.get(`${BASE_URL}/movie/${id}?api_key=${API_KEY}`);
-  console.log("movie detaile output ", res?.data);
   return res?.data;
 };
 

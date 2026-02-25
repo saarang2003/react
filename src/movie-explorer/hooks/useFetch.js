@@ -7,16 +7,13 @@ export default function useFetch(fetchFn, deps = []) {
 
   useEffect(() => {
     const fetchData = async () => {
-      console.log("Fetching started...");
       setLoading(true);
       setError(null);
 
       try {
         const result = await fetchFn();
-        console.log("Result inside hook:", result);
         setData(result);
       } catch (err) {
-        console.error("HOOK ERROR:", err);
         setError(err.message || "Some Error Occurred");
       } finally {
         setLoading(false);

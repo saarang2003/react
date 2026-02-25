@@ -20,10 +20,6 @@ export default function MovieDetails() {
     loading,
     error,
   } = useFetch(() => fetchMovieById(id), [id]);
-
-  console.log("Movie ID from params:", id);
-
-  console.log("movie from movie detailes page", movie);
   const { favorites, addFavorite, removeFavorite } = useFavorites();
 
   if (loading) return <CircularProgress sx={{ mt: 4 }} />;
