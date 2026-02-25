@@ -1,11 +1,16 @@
-import { createContext, useContext, useEffect, useState } from "react";
-
-const FavoritesContext = createContext();
+import { useEffect } from "react";
+import { useState } from "react";
+import { FavoritesContext } from "./FavoritesContext";
 
 export default function FavoriteProvider({ children }) {
   const [favorites, setFavorites] = useState(() => {
-    const saved = localStorage.getItem("favorites");
-    return saved ? JSON.parse(saved) : [];
+    try {
+      const saved = localStorage.getItem("favorites");
+      return saved ? JSON.parse(saved) : [];
+    } catch (error) {
+      console.error("Failed to parse favorites from localStorage", error);
+      return [];
+    }
   });
 
   useEffect(() => {
@@ -28,5 +33,3 @@ export default function FavoriteProvider({ children }) {
     </FavoritesContext.Provider>
   );
 }
-
-export const useFavorites = () => useContext(FavoritesContext);

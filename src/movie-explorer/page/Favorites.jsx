@@ -4,7 +4,6 @@ import MovieList from "../components/MovieList.jsx";
 
 export default function Favorites() {
   const { favorites } = useFavorites();
-  console.log("Favorites now:", favorites);
   return (
     <Box sx={{ p: 3 }}>
       <Typography variant="h4" gutterBottom>

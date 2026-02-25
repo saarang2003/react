@@ -8,8 +8,6 @@ import {
   Typography,
 } from "@mui/material";
 import { useFavorites } from "../context/FavoritesContext";
-import { useEffect, useState } from "react";
-import axios from "axios";
 import useFetch from "../hooks/useFetch";
 import { fetchMovieById } from "../api/movieService";
 
@@ -23,9 +21,6 @@ export default function MovieDetails() {
     error,
   } = useFetch(() => fetchMovieById(id), [id]);
 
-  console.log("Movie ID from params:", id);
-
-  console.log("movie from movie detailes page", movie);
   const { favorites, addFavorite, removeFavorite } = useFavorites();
 
   if (loading) return <CircularProgress sx={{ mt: 4 }} />;

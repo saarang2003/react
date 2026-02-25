@@ -11,14 +11,18 @@ export default function Home() {
   const [query, setQuery] = useState("");
   const debounceQuery = useDebounce(query);
 
-  console.log("data from trending", trending);
-
   const { data: searchResult } = useFetch(
     () => (debounceQuery ? searchMovies(debounceQuery) : []),
     [debounceQuery],
   );
 
-  const movies = debounceQuery ? searchResult || [] : trending || [];
+  let movies = [];
+
+  if (debounceQuery) {
+    movies = searchResult || [];
+  } else {
+    movies = trending || [];
+  }
 
   return (
     <Box>

@@ -12,7 +12,6 @@ import { useFavorites } from "../context/FavoritesContext";
 
 function MovieCard({ movie }) {
   const { favorites, addFavorite, removeFavorite } = useFavorites();
-  console.log("Favorites now:", favorites);
   const isFav = favorites.some((m) => m.id === movie.id);
 
   return (

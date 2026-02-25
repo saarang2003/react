@@ -2,7 +2,6 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import Home from "../page/Home";
 import MovieDetails from "../page/MovieDetails";
 import Favorites from "../page/Favorites";
-import FavoriteProvider from "../context/FavoritesContext";
 import Navbar from "../components/Navbar";
 
 export default function AppRouter() {
