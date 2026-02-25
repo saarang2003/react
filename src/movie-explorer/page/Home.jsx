@@ -16,7 +16,13 @@ export default function Home() {
     [debounceQuery],
   );
 
-  const movies = debounceQuery ? searchResult || [] : trending || [];
+  let movies = [];
+
+  if (debounceQuery) {
+    movies = searchResult || [];
+  } else {
+    movies = trending || [];
+  }
 
   return (
     <Box>
